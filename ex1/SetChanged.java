@@ -5,9 +5,8 @@ import java.util.function.IntBinaryOperator;
 public class SetChanged {
     private ArrayList<Integer> a;
 
-    public SetChanged() {
-        a = new ArrayList<Integer>();
-    }
+    public SetChanged() {a = new ArrayList<Integer>();}
+
 
     public int[] toArray() {
         int[] ia = new int[a.size()];
@@ -75,6 +74,4 @@ public class SetChanged {
         }
         return true;
     }
-}
-{
 }
