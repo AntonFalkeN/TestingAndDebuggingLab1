@@ -21,3 +21,27 @@ PS C:\Users\hanab\Documents\GitHub\TestingAndDebuggingLab1-ny> java Dates 5 20 5
 The difference in days between 5/20 and 5/20 is:
 -155
 Incorrect! Should be 0.
+
+3.2) Local variables Main:
+someMonth = 1
+someDay = 2
+laterMonth = 3
+laterDay = 4
+someDayInYear = 31
+laterDayInYear = 62
+aMonth = 3
+daysBetween = 0
+
+3.3) daysInMonth line 10
+
+3.4) Bugs:
+- daysInMonth line 13: Month 2, 4, 7 will return the wrong number of days
+
+- Both the for loops will have aMonth as 1 less than what it should be
+
+- It doesn't check if the first date comes after the second date,
+  meaning that the second that is for the following year. This causes
+  the program to calculate negative days. In DatesImprove, we have added
+  this if-statement.
+
+-
