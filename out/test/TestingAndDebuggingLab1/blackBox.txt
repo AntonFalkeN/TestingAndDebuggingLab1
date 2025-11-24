@@ -1,0 +1,35 @@
+
+1: Specify the input space for each argument to the method (including the object of that method).
+    a) Requires that nemplyee, starttime and endtime are integers >= 0
+    b)
+2: Divide this input space/partition into blocks, based on the specification.
+    a)  Block #1: starttime > endtime
+        test_setRequiredNumber_part1: input: "startime = 4", "endtime = 2", expected: "setRequiredNumber(nemployee, starttime, endtime) = workSchedule"
+
+        Block #2: starttime < endtime and nemployee > workingemployee
+
+        Block #3 startime < endtime and nemployee <= workingemployee
+
+    b)
+3: Implement at least one test case for each block, and possibly additional border cases.
+4: For each test case, give a comment that describes which block it tests.
+
+a) setRequiredNumber
+
+  public void setRequiredNumber(int nemployee, int starttime, int endtime) { ... }
+
+requires:
+  0 <= nemployee and  0 <= starttime and  0 <=endtime
+ensures:
+  if starttime > endtime then
+    the schedule is unchanged
+  otherwise
+      for each Hour between starttime and endtime (inclusive)
+          if the length of workingEmployees is greater than nemployee
+          then
+             requiredNumber is set to nemployee and workingEmployees
+             keeps a number of employees equal to nemployee, discarding
+             the rest
+          otherwise
+             requiredNumber is set to nemployee and workingEmployees is unchanged
+      and the rest of the schedule is unchanged
