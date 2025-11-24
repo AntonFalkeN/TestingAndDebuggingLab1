@@ -10,20 +10,58 @@
 
     b) Requires: currenttime >= 0 and currenttime < size
 
-       Ensures that
+       Ensures that:
 
 2: Divide this input space/partition into blocks, based on the specification.
     a)  Block #1: starttime > endtime
         test_setRequiredNumber_part1: input: "startime = 4", "endtime = 2", expected: "setRequiredNumber(nemployee, starttime, endtime) = workSchedule"
 
-        Block #2: starttime < endtime and nemployee < workingemployee
+        Block #2: starttime <= endtime and nemployee < workingemployees.length
 
-        Block #3 startime < endtime and nemployee >= workingemployee
+        Block #3 startime <= endtime and nemployee >= workingemployees.length
 
-    b)  Block #1:
-        Block #2:
+    b)  Block #1: Hour not completed: workingemployees.length < requiredNumber
+        Block #2: hour completed: workingemployees.length >= requiredNumber on that hour, but hour later is incompleted
+        Block #3: hour completed: workingemployees.length >= requiredNumber on that hour
 
 3: Implement at least one test case for each block, and possibly additional border cases.
+    a)
+        Test Block #1:
+    Input: nemployee = 3, starttime = 5, endtime = 2
+    Expected: no hour is changed.
+
+        Test Block #2:
+    Setup: hour 3 har arbetslista ["A", "B", "C"] --> workingemployees.length = 3.
+    Input: nemployee = 2, starttime = 3, endtime = 3
+    Expected:
+    requiredNumber(3) = 2
+    workingEmployees(3) = ["A", "B"]
+
+        Test Block #3:
+    Setup: hour 2 har arbetslista ["A", "B"]
+    Input: nemployee = 5, starttime = 2, endtime = 2
+    Expected:
+    requiredNumber(2) = 5
+    workingEmployees(2) unchanged
+
+    b)
+        Test Block #1:
+    Setup: hour 3 har requiredNumber[3] = 2 och arbetslista ["A"]
+    Input: currenttime = 3
+    Expected: returns 3
+
+        Test Block #2:
+    Setup:
+    hour 2 complete, workingemployees.length >= requirdNumber(2)
+    hour 3 complete, workingemployees.length >= requirdNumber(3)
+    hour 4 incomplete, workingemployees.length < requirdNumber(4).
+    Input: currenttime = 2
+    Expected: returns 4
+
+        Test Block #3:
+    Setup: all hours have workingEmployees.length >= requiredNumber
+    Input: currenttime = 0
+    Expected: returns -1
 
 4: For each test case, give a comment that describes which block it tests.
 
