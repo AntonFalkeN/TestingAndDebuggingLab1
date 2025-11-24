@@ -1,0 +1,23 @@
+Test 1:
+PS C:\Users\hanab\Documents\GitHub\TestingAndDebuggingLab1-ny> java Dates 12 31 1 1
+The difference in days between 12/31 and 1/1 is:
+-398
+Incorrect! Should be 1.
+
+Test 2:
+PS C:\Users\hanab\Documents\GitHub\TestingAndDebuggingLab1-ny> java Dates 1 10 2 10
+The difference in days between 1/10 and 2/10 is:
+0
+Incorrect! Should be 31.
+
+Test 3:
+PS C:\Users\hanab\Documents\GitHub\TestingAndDebuggingLab1-ny> java Dates 5 20 5 10
+The difference in days between 5/20 and 5/10 is:
+-165
+Incorrect! Should be 355.
+
+Test 4:
+PS C:\Users\hanab\Documents\GitHub\TestingAndDebuggingLab1-ny> java Dates 5 20 5 20
+The difference in days between 5/20 and 5/20 is:
+-155
+Incorrect! Should be 0.
