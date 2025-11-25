@@ -34,6 +34,14 @@
         Block #2: hour completed: workingemployees.length >= requiredNumber on that hour, but hour later is incompleted
         Block #3: hour completed: workingemployees.length >= requiredNumber on that hour
 
+        Border cases:
+        test_nextIncomplete_border1: Input: currenttime = 0 Expected:  returns the time of the hour closest to 0 such that
+                                                                       the length of workingEmployees is less that requiredNumber: Block #1
+        test_nextIncomplete_border2: Input: currenttime = size-1 Expected:  returns the time of the hour closest to size-1 such that
+                                                                               the length of workingEmployees is less that requiredNumber: Block #1
+        
+
+
 3: Implement at least one test case for each block, and possibly additional border cases.
     a)
         Test Block #1:
