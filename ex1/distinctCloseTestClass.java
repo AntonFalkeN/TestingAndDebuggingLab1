@@ -13,6 +13,7 @@ public class distinctCloseTestClass {
         s.insert(11);
         assertTrue(s.distinctClosed((a, b) -> a + b));
     }
+
     @Test
     void test5plus6false() {
         s.insert(5);

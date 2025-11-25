@@ -69,6 +69,7 @@ public class SetChanged {
             for (int j = i; j < a.size(); j++) {
                 vi = a.get(i);
                 vj = a.get(j);
+                
                 if (((member(f.applyAsInt(vi, vj)) || member(f.applyAsInt(vj, vi))) && (vi != vj))) return true;
             }
         }

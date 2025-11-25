@@ -21,16 +21,8 @@ class Dates {
         }
     }
 
-    public static void main (String[] args) {
-        int firstMonth, firstDay;
-        int secondMonth, secondDay;
-
+    public static int daysBetween(int firstMonth, int firstDay, int secondMonth, int secondDay){
         int i;
-        firstMonth = Integer.parseInt(args[0]);
-        firstDay = Integer.parseInt(args[1]);
-
-        secondMonth = Integer.parseInt(args[2]);
-        secondDay = Integer.parseInt(args[3]);
 
         /* Used to record what day in the year the first day  */
         /* of someMonth and laterMonth are. */
@@ -47,9 +39,6 @@ class Dates {
 
         /* The answer */
         int daysBetween = 0;
-        System.out.println("The difference in days between " +
-                firstMonth + "/" + firstDay + " and " +
-                secondMonth + "/" + secondDay + " is: ");
 
         int daysToDate1 = daysToFirstMonth + firstDay;
         int daysToDate2 = daysToSecondMonth + secondDay;
@@ -60,7 +49,26 @@ class Dates {
         else {
             daysBetween = 365 - daysToDate1 + daysToDate2;
         }
+        return daysBetween;
+    }
 
-        System.out.println(daysBetween);
+    public static void main (String[] args) {
+        int firstMonth, firstDay;
+        int secondMonth, secondDay;
+
+        firstMonth = Integer.parseInt(args[0]);
+        firstDay = Integer.parseInt(args[1]);
+
+        secondMonth = Integer.parseInt(args[2]);
+        secondDay = Integer.parseInt(args[3]);
+
+        /* Used to record what day in the year the first day  */
+        /* of someMonth and laterMonth are. */
+
+        System.out.println("The difference in days between " +
+                firstMonth + "/" + firstDay + " and " +
+                secondMonth + "/" + secondDay + " is: ");
+
+        System.out.println(daysBetween(firstMonth,firstDay,secondMonth,secondDay));
     }
 }

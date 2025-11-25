@@ -1,4 +1,3 @@
-
 1: Specify the input space for each argument to the method (including the object of that method).
     a) Requires: nemplyee, starttime and endtime are integers >= 0
        Ensures that:
@@ -7,10 +6,16 @@
             if starttime < endtime and nemployee < workingemployee
                 required number of employees becomes nemployees and the correct number of excess employees are removed
             if startime < endtime and nemployee >= workingemployee
+                work schedule remains unchanged.
 
     b) Requires: currenttime >= 0 and currenttime < size
 
        Ensures that:
+                if x in [currenttime, size-1] && workingEmployees(x,x) < readSchedule(x).requiredNumber
+                    return x closest to currenttime such that  workingEmployees < that requiredNumber and schedule is unchanged
+                else
+                    return -1 and schedule remains unchanged
+
 
 2: Divide this input space/partition into blocks, based on the specification.
     a)  Block #1: starttime > endtime
@@ -19,6 +24,11 @@
         Block #2: starttime <= endtime and nemployee < workingemployees.length
 
         Block #3 startime <= endtime and nemployee >= workingemployees.length
+
+        Border cases:
+        test_setRequiredNumber_border1: Input: nemployee = 0, starttime = 0, endtime = 0 Expected: workSchedule unchanged: Block #1
+        test_setRequiredNumber_border2: Input: nemployee = 0, starttime = 1, endtime = 0 Expected: workSchedule unchanged: Block #1
+
 
     b)  Block #1: Hour not completed: workingemployees.length < requiredNumber
         Block #2: hour completed: workingemployees.length >= requiredNumber on that hour, but hour later is incompleted
@@ -62,25 +72,3 @@
     Setup: all hours have workingEmployees.length >= requiredNumber
     Input: currenttime = 0
     Expected: returns -1
-
-4: For each test case, give a comment that describes which block it tests.
-
-a) setRequiredNumber
-
-  public void setRequiredNumber(int nemployee, int starttime, int endtime) { ... }
-
-requires:
-  0 <= nemployee and  0 <= starttime and  0 <=endtime
-ensures:
-  if starttime > endtime then
-    the schedule is unchanged
-  otherwise
-      for each Hour between starttime and endtime (inclusive)
-          if the length of workingEmployees is greater than nemployee
-          then
-             requiredNumber is set to nemployee and workingEmployees
-             keeps a number of employees equal to nemployee, discarding
-             the rest
-          otherwise
-             requiredNumber is set to nemployee and workingEmployees is unchanged
-      and the rest of the schedule is unchanged

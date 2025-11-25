@@ -28,4 +28,10 @@ public class memberTestClass {
         sc.insert(8);
         assertFalse(sc.member(9));
     }
+
+    @Test
+    void memberGreaterThanTest() {
+        sc.insert(5);
+        assertFalse(sc.member(3));
+    }
 }
