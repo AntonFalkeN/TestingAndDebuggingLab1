@@ -19,20 +19,17 @@
 
 2: Divide this input space/partition into blocks, based on the specification.
     a)  Block #1: starttime > endtime
-        test_setRequiredNumber_part1: input: "startime = 4", "endtime = 2", expected: "setRequiredNumber(nemployee, starttime, endtime) = workSchedule"
 
         Block #2: starttime <= endtime and nemployee < workingemployees.length
 
         Block #3 startime <= endtime and nemployee >= workingemployees.length
 
-        Border cases:
-        test_setRequiredNumber_border1: Input: nemployee = 0, starttime = 0, endtime = 0 Expected: workSchedule unchanged: Block #1
-        test_setRequiredNumber_border2: Input: nemployee = 0, starttime = 1, endtime = 0 Expected: workSchedule unchanged: Block #1
-
-
     b)  Block #1: Hour not completed: workingemployees.length < requiredNumber
+
         Block #2: hour completed: workingemployees.length >= requiredNumber on that hour, but hour later is incompleted
+
         Block #3: hour completed: workingemployees.length >= requiredNumber on that hour
+
 
 3: Implement at least one test case for each block, and possibly additional border cases.
     a)
@@ -54,6 +51,10 @@
     requiredNumber(2) = 5
     workingEmployees(2) unchanged
 
+    Border cases:
+    test_setRequiredNumber_border1: Input: nemployee = 0, starttime = 0, endtime = 0 Expected: workSchedule unchanged: Block #1
+    test_setRequiredNumber_border2: Input: nemployee = 0, starttime = 1, endtime = 0 Expected: workSchedule unchanged: Block #1
+
     b)
         Test Block #1:
     Setup: hour 3 har requiredNumber[3] = 2 och arbetslista ["A"]
@@ -72,3 +73,8 @@
     Setup: all hours have workingEmployees.length >= requiredNumber
     Input: currenttime = 0
     Expected: returns -1
+
+    Border cases:
+
+
+    Found bugs: None.

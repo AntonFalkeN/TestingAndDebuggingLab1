@@ -2,7 +2,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class daysInMonthTest {
+class DaysInMonthTest {
 
     @Test
     void daysInMonth1() {
