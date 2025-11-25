@@ -21,9 +21,21 @@ public class DatesTest
     void daysBetweenTest2() {
         assertEquals(31, Dates.daysBetween(1, 10, 2, 10));
     }
+    @Test
+    void daysBetweenTest3() {
+        assertEquals(25, Dates.daysBetween(2, 2, 2, 27));
+    }
+    @Test
+    void daysBetweenTest4() {
+        assertEquals(13, Dates.daysBetween(1, 2, 1, 15));
+    }
 
     @Test
     void daysBetweenMax() {
         assertEquals(364, Dates.daysBetween(1, 10, 1, 9));
+    }
+    @Test
+    void daysBetweenMin() {
+        assertEquals(0, Dates.daysBetween(1, 1, 1, 1));
     }
 }

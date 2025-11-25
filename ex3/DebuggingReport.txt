@@ -43,5 +43,3 @@ daysBetween = 0
   meaning that the second that is for the following year. This causes
   the program to calculate negative days. In DatesImprove, we have added
   this if-statement.
-
--
