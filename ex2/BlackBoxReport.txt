@@ -13,7 +13,7 @@
        Ensures that:
                 if x in [currenttime, size-1] && workingEmployees(x,x) < readSchedule(x).requiredNumber
                     return x closest to currenttime such that  workingEmployees < that requiredNumber and schedule is unchanged
-                else
+                if x not in [currnettime, size-1] or workingEmployees(x,x) is not striclty smaller than readSchedule(x).requiredNumber
                     return -1 and schedule remains unchanged
 
 
@@ -30,8 +30,6 @@
         test_setRequiredNumber_border2: Input: nemployee = 0, starttime = 1, endtime = 0 Expected: workSchedule unchanged: Block #1
         test_setRequiredNumber_border3: Input: nemployee = 2 (Hour 3 has 2 working employees), starttime = 3, endtime = 3 Expected: Noone removed: Block #3
         test_setRequiredNumber_border4: Input: nemployee = 0 (Hour 1 has 1 working employees), starttime = 1, endtime = 1 Expected: Workingemployees is emptied: Block #2
-
-
 
 
     b)  Block #1: Hour not completed: workingemployees.length < requiredNumber

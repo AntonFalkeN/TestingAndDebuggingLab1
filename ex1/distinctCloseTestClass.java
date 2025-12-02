@@ -71,6 +71,26 @@ public class distinctCloseTestClass {
         sc.insert(5);
         sc.insert(4);
         sc.insert(1);
+        sc.insert(-1);
         assertTrue(sc.distinctClosed((a, b) -> a - b));
+    }
+
+
+    @Test
+    void testMinusNonCommutativeShouldFail() {
+        Set s = new Set();
+        s.insert(-1);
+        s.insert(0);
+
+        assertFalse(s.distinctClosed((a, b) -> a - b));
+    }
+
+    @Test
+    void testMinusNonCommutativeShouldFailSC() {
+        SetChanged sc = new SetChanged();
+        sc.insert(-1);
+        sc.insert(0);
+
+        assertFalse(sc.distinctClosed((a, b) -> a - b));
     }
 }
