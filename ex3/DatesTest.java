@@ -38,4 +38,12 @@ public class DatesTest
     void daysBetweenMin() {
         assertEquals(0, Dates.daysBetween(1, 1, 1, 1));
     }
+    @Test
+    void inputValidationMonthToLarge(){
+        assertEquals(1, Dates.daysBetween(13, 1, 13, 2));
+    }
+    @Test
+    void inputValidationDaysToLarge(){
+        assertEquals(2, Dates.daysBetween(8, 50, 8, 52));
+    }
 }

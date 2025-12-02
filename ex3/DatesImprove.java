@@ -10,6 +10,10 @@ class Dates {
     /* Precondition: month is between 1 and 12, inclusive */
     /* Postcondition: returns the number of days in the given month */
     public static int daysInMonth (int month) {
+        if(month > 12 || month < 1){
+            throw new IllegalArgumentException("Invalid input");
+        }
+
         if ((month == 4) || (month == 9) || (month == 6) || (month == 11)) {
             return 30;
         }

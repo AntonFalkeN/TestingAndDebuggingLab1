@@ -11,6 +11,8 @@
     b) Requires: currenttime >= 0 and currenttime < size
 
        Ensures that:
+                if length(workingEmployees[currenttime]) < requiredNumber[currenttime]
+                    returns currenttime
                 if x in [currenttime, size-1] && workingEmployees(x,x) < readSchedule(x).requiredNumber
                     return x closest to currenttime such that  workingEmployees < that requiredNumber and schedule is unchanged
                 if x not in [currnettime, size-1] or workingEmployees(x,x) is not striclty smaller than readSchedule(x).requiredNumber
@@ -26,10 +28,14 @@
 
         Border cases:
         test_setRequiredNumber_border1: Input: nemployee = 0, starttime = 0, endtime = 0 Expected: workSchedule unchanged: Block #3
-        test_setRequiredNumber_border2: Input: nemployee = 0, starttime = 1, endtime = 0 Expected: workSchedule unchanged: Block #1
-        test_setRequiredNumber_border3: Input: nemployee = 2 (Hour 3 has 2 working employees), starttime = 3, endtime = 3 Expected: Noone removed: Block #3
-        test_setRequiredNumber_border4: Input: nemployee = 0 (Hour 1 has 1 working employees), starttime = 1, endtime = 1 Expected: Workingemployees is emptied: Block #2
+        test_setRequiredNumber_border2: Input: nemployee = 0, starttime = n, endtime = n-1, Expected: workschedule unchanged: Block#1
+        test_setRequiredNumber_border3: Input: nemployee = 0, startime = n-1, endtime = n, Expected: Hour n-1 and n changes to nemployees = 0: Block#2 (More than 0 people are currently scheduled for those hours)
+        test_setRequireNumber_border4: Input: nemployee = 1 (Hour n has 1 working employees), starttime = n, endtime = n, Expected: Noone removed from schedule: Block#3
 
+        test_setRequiredNumber_border5: Input: nemployee = 0, startime = 1, endtime = 4 Expected: Hour 1-4 removes all working employees: Block #2
+        test_setRequiredNumber_border6: Input: nemployee = workingemployees, startime = 1, endtime = 4 Expected: Hour 1-4 remains unchanged: Block #3
+        test_setRequiredNumber_border7: Input: nemployee = workingEmployee-1, startime = 1, endtime = 4 Expected: requiredNumber is set to nemployee and workingEmployees is unchanged for hour 1-4 Block#3
+        test_setRequiredNumber_border8: Input: nemployee = workingEmployee+1, startime = 1, endtime = 4, Expected: Hour 1-4 decreases by one: Block #2
 
     b)  Block #1: Hour not completed: workingemployees.length < requiredNumber
 
@@ -37,16 +43,13 @@
 
         Block #3: hour completed: workingemployees.length >= requiredNumber on that hour
 
-
         Border cases:
-        test_nextIncomplete_border1: Input: currenttime = 0 Expected:  returns the time of the hour closest to 0 such that
-                                                                       the length of workingEmployees is less that requiredNumber: Block #1
-        test_nextIncomplete_border2: Input: currenttime = size-1 Expected:  returns the time of the hour closest to size-1 such that
+        test_nextIncomplete_border1: Input: currenttime = 0, Expected: returns the time of the hour closest to 0 such that
+                                                          the length of workingEmployees is less that requiredNumber: Block #1
+        test_nextIncomplete_border2: Input: currenttime = size-1 Expected: returns the time of the hour closest to size-1 such that
                                                                                the length of workingEmployees is less that requiredNumber: Block #1
-        test_nextIncomplete_border3: Input: currenttime = 2 (hour 2 has workingEmployees.length = 0, requiredNumber = 1) Expected: returns 2 Block #1
-        test_nextIncomplete_border4: Input: currenttime = 3 (hour 3 has workingEmployees.length ≥ requiredNumber, hour 4 has workingEmployees.length < requiredNumber) Expected: return 4: Block #2
-                                                                                                                                                        (currenttimes next hour is incomplete)
-        test_nextIncomplete_border5: Input: currenttime = 4 (size = 5, hour 0-4 workingEmployees.length ≥ requiredNumber) Expected: -1: Block #3
+        test_nextIncomplete_border3: Input: currenttime is incomplete Expected: returns currenttime: Block #1
+        test_nextIncomplete_border4: input: all hours complete, expected: returns -1: Block #2
 
 3: Implement at least one test case for each block, and possibly additional border cases.
     a)
@@ -68,10 +71,6 @@
     requiredNumber(2) = 5
     workingEmployees(2) unchanged
 
-    Border cases:
-    test_setRequiredNumber_border1: Input: nemployee = 0, starttime = 0, endtime = 0 Expected: workSchedule unchanged: Block #1
-    test_setRequiredNumber_border2: Input: nemployee = 0, starttime = 1, endtime = 0 Expected: workSchedule unchanged: Block #1
-
     b)
         Test Block #1:
     Setup: hour 3 har requiredNumber[3] = 2 och arbetslista ["A"]
@@ -91,7 +90,8 @@
     Input: currenttime = 0
     Expected: returns -1
 
-    Border cases:
+    Found bugs: setRequiredNumber: Removes one to many from the working employees list and also the relation between the
+                                   length of workingEmployees and requiredNumber becomes incorrect
+                setRequiredNumber: Crashes if endtime > time (should not be possible)
 
-
-    Found bugs: None.
+                nextIncomplete: Returns the last incomplete and not the first

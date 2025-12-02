@@ -45,6 +45,7 @@ public class SetChanged {
     }
 
     public void intersect(SetChanged s) {
+        //Removed i++ after a.remove(i)
         for(int i = 0, j = 0 ; i < a.size() && j < s.a.size();) {
             if (a.get(i).equals(s.a.get(j))){
                 i++;
@@ -64,6 +65,9 @@ public class SetChanged {
     //   (a, b) -> a + b;
     //   (a, b) -> a - b;
     public boolean distinctClosed(IntBinaryOperator f) {
+        //Changed logic in the return statement
+        //Incorrect version returned false if any of f(vi, vj) was missing, new version returns true if both can be found
+        //and if vi != vj
         int vi,vj;
         for (int i = 0; i < a.size(); i++) {
             for (int j = i; j < a.size(); j++) {
